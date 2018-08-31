@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html id = '__main__'>
+    <head>
+        <style></style>
+        <script>
+            if (document.cookie == 'agreed') {
+                fadeout();
+            }
+            document.getElementById('tarea_1').value = '';
+            function evalcookie() {
+                var val = JSON.stringify(document.getElementById('tarea_1').value).toLowerCase();
+                document.getElementById('tarea_1').value = '';
+                console.log(val);
+                if (val.includes('1')) {
+                    document.getElementById('ans').textContent = 'agreed.';
+                    document.cookie = 'agreed';
+                    fadeout();
+                }
+                else if (val.includes('0')) {
+                    document.getElementById('ans').textContent = 'disagreed.';
+                    document.cookie = 'disagreed'
+                    fadeout();
+                }
+                else if (val.includes('help')) {
+                    document.getElementById('ans').textContent = '1 = Agree, 0 = Disagree';
+                }
+                else {
+                    document.getElementById('ans').textContent = 'SyntaxError: Invalid entry.';
+                }
+            }
+            function fadeout() {
+                console.log('f/o');
+                document.getElementById('__main__').remove();
+            }
+        </script>
+        <title></title>
+    </head>
+    <body>
+        <div style = 'background-color:black;position:absolute;top:0px;left:0px;width:400px;height:200px;' id = 'entrybox_forcookies_1'>
+            <code style = 'color:white;font-size:15px;left:10px;position:absolute;top:10px;' title = 'Type "help" for more info.'>Do you agree to share cookies with our site?<br>This includes storing cookies in your browser.<br><br>(0, 1)</code>
+            <textarea id = 'tarea_1' rows = '1' style = 'width:320px;height:15px;position:absolute;top:63px;left:65px;border:none;background-color:black;color:white;font-family:Consolas;overflow-y:hidden;font-size:15px;' onkeypress = 'if (event.keyCode == 13) {evalcookie();}'></textarea>
+            <code style = 'background-color:black;color:white;left:10px;top:90px;font-size:15px;position:absolute;' id = 'ans'></code>
+        </div>
+    </body>
+</html>
