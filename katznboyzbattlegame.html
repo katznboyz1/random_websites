@@ -24,7 +24,7 @@
         var roundwon = false;
         
         //              X    Y        SPRITE      IS TOUCHING GROUND        FALLING SPEED        SCORE       HEALTH
-        var player1 = [850, 690, 'p1_still.png', false, 0, 0, 100]
+        var player1 = [550, 690, 'p1_still.png', false, 0, 0, 100]
         var player2 = [100, 690, 'p2_still.png', false, 0, 0, 100]
 
         function image(src, x, y, width, height) {
@@ -61,12 +61,12 @@
                 }
             }
 
-            if (event.keyCode == 17) {
+            if (event.keyCode == 16) {
                 if (Math.abs(player1[0] - player2[0]) < 50 && player1[6] > 0) {
                     player1[6] -= 5;
                 }
             }
-            if (event.keyCode == 16) {
+            if (event.keyCode == 13) {
                 if (Math.abs(player1[0] - player2[0]) < 50 && player2[6] > 0) {
                     player2[6] -= 5;
                 }
@@ -76,7 +76,7 @@
                 roundwon = false;
                 player1[6] = 100;
                 player2[6] = 100;
-                player1[0] = 850;
+                player1[0] = 550;
                 player1[1] = 690;
                 player2[0] = 100;
                 player2[1] = 690;
@@ -99,7 +99,9 @@
         window.addEventListener('keyup', registerKeyUp, false);
 
         function mainloop() {
+            ctx.fillStyle = '#69f5ff';
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             if (player1[2] != 'p1_still.png') {
                 player1[2] = 'p1_still.png';
@@ -213,13 +215,24 @@
                 ctx.fillText(('runs: ' + runs), 10, 140);
             }
 
+            ctx.fillStyle = '#B5651D';
+            ctx.fillRect(700, 600, 200, 170);
+            ctx.fillStyle = '#654321';
+            ctx.fillRect(700, 600, 200, 20);
+            ctx.fillRect(700, 640, 200, 20);
+            ctx.fillRect(700, 680, 200, 20);
+            ctx.fillRect(700, 720, 200, 20);
+            ctx.fillRect(700, 760, 200, 10);
+            ctx.fillStyle = '#a3f9ff';
+            ctx.fillRect(750, 680, 100, 40);
+
             image(('./images/' + player1[2]), player1[0], player1[1], 70, 100);
             image(('./images/' + player2[2]), player2[0], player2[1], 70, 100);
             
             ctx.fillStyle = 'green';
             ctx.fillRect(0, 770, 1000, 800);
             ctx.fillStyle = '#4d3a08';
-            ctx.fillRect(0, 780, 1000, 800); 
+            ctx.fillRect(0, 780, 1000, 800);
 
             runs++;
 
@@ -243,6 +256,7 @@
         RIGHT - Player 1 right
         CTRL - Player 2 melee
         SHIFT - Player 1 melee
+        DELETE - Toggle debug console
         */
     </script>
 </body>
